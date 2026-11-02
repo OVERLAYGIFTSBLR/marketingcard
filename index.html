@@ -93,10 +93,6 @@ img.start-logo{width:140px;height:140px;object-fit:contain;margin-bottom:44px;fi
 @keyframes flashFade{0%{opacity:1}100%{opacity:0}}
 
 /* HUD */
-#hudCard{position:fixed;top:14px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;width:max-content;max-width:calc(100vw - 120px);z-index:210;pointer-events:none;opacity:0;transition:opacity .4s}
-#hudPill{display:flex;padding:3px;border-radius:100px;border:1px solid var(--gold-border);background:var(--glass-dark);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);max-width:100%}
-#hudCard.show{opacity:1}
-#hudName{min-height:34px;padding:0 20px;display:flex;align-items:center;justify-content:center;border-radius:100px;background:linear-gradient(135deg,var(--gold-light),var(--gold));color:#1a1305;font-family:'Jost',sans-serif;font-weight:700;font-size:11px;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
 @supports(padding-bottom:env(safe-area-inset-bottom)){
 #dishCarousel{bottom:calc(20px + env(safe-area-inset-bottom))}}
@@ -108,52 +104,11 @@ img.start-logo{width:140px;height:140px;object-fit:contain;margin-bottom:44px;fi
 #actionBar{position:fixed;left:50%;bottom:132px;transform:translateX(-50%);display:flex;gap:8px;width:calc(100vw - 28px);max-width:420px;z-index:170;opacity:0;pointer-events:none;transition:opacity .5s}
 #actionBar a{flex:1;min-height:44px;display:flex;align-items:center;justify-content:center;border-radius:100px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;border:1px solid var(--gold-border);background:var(--glass-dark);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);color:var(--gold-light);-webkit-tap-highlight-color:transparent}
 #actionBar a.primary{flex:1.7;background:linear-gradient(135deg,var(--gold-light),var(--gold));color:#1a1305;font-weight:500;border-color:var(--gold)}
-#snapBtn{position:fixed;right:14px;top:14px;width:44px;height:44px;border-radius:50%;font-size:18px;opacity:0;pointer-events:none;transition:opacity .5s;z-index:200;border:1px solid var(--gold-border);background:var(--glass-dark);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);color:var(--gold-light);cursor:pointer;-webkit-tap-highlight-color:transparent;display:flex;align-items:center;justify-content:center;padding:0}
-#snapBtn svg{width:20px;height:20px;fill:none;stroke:var(--gold-light);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;pointer-events:none}
-#snapBtn:active{background:var(--gold)}
-#snapBtn:active svg{stroke:var(--ink)}
 #spinToast{position:fixed;top:174px;left:50%;transform:translateX(-50%);z-index:210;padding:7px 16px;border-radius:100px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;background:var(--glass-dark);border:1px solid var(--gold-border);color:var(--gold-light);opacity:0;pointer-events:none;transition:opacity .3s}
 #spinToast.show{opacity:1}
-#soundBtn{position:fixed;right:14px;top:66px;width:44px;height:44px;border-radius:50%;font-size:17px;z-index:200;border:1px solid var(--gold-border);background:var(--glass-dark);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);color:var(--gold-light);cursor:pointer;-webkit-tap-highlight-color:transparent;opacity:0;pointer-events:none;transition:opacity .5s}
-#modeToggle{position:fixed;left:50%;bottom:186px;transform:translateX(-50%);z-index:170;display:flex;padding:3px;border-radius:100px;border:1px solid var(--gold-border);background:var(--glass-dark);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);opacity:0;pointer-events:none;transition:opacity .5s}
-#modeToggle button{min-height:34px;padding:0 16px;border:0;border-radius:100px;background:transparent;color:rgba(245,240,232,.6);font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;white-space:nowrap;cursor:pointer;-webkit-tap-highlight-color:transparent;transition:background .25s,color .25s}
-#modeToggle button.on{background:linear-gradient(135deg,var(--gold-light),var(--gold));color:#1a1305;font-weight:500}
 
-@keyframes cardIn{from{opacity:0;transform:translateX(-50%) translateY(-10px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
-@keyframes fadeUp{from{opacity:0;transform:translateY(6px)}}
-#hudCard.reveal{animation:cardIn .9s cubic-bezier(.22,.8,.3,1) .7s backwards}
-#hudCard.reveal #hudName{animation:fadeUp .7s ease .95s backwards}
-#hudCard.reveal .tags{animation:fadeUp .7s ease 1.25s backwards}
 
-/* SHARE SHEET */
-#shareSheet{position:fixed;inset:0;z-index:260;display:none;align-items:flex-end;justify-content:center;background:rgba(0,0,0,.55);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
-#shareSheet.show{display:flex}
-.ss-panel{width:min(420px,calc(100vw - 28px));margin-bottom:calc(20px + env(safe-area-inset-bottom,0px));padding:16px;border-radius:26px;background:rgba(10,8,6,.92);border:1px solid var(--gold-border);display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.ss-title{grid-column:1/-1;text-align:center;font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--gold-light);letter-spacing:.04em;padding-bottom:2px}
-.ss-panel button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:74px;padding:10px 8px;border-radius:18px;border:1px solid var(--gold-border);background:var(--gold-dim);color:var(--cream);font-family:'Jost',sans-serif;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
-.ss-panel button:active{background:var(--gold);color:var(--ink)}
-.ss-panel button b{font-size:13px;font-weight:500;letter-spacing:.04em}
-.ss-panel button small{font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:rgba(245,240,232,.5)}
-.ss-panel button.ss-close{grid-column:1/-1;min-height:40px;background:transparent;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-light)}
-#recPill{position:fixed;top:66px;left:50%;transform:translateX(-50%);z-index:230;padding:6px 16px;border-radius:100px;background:rgba(190,30,30,.9);color:#fff;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;display:none;pointer-events:none}
-#recPill.show{display:block}
-#festPill{max-width:100%;padding:6px 14px;border-radius:16px;text-align:center;background:linear-gradient(135deg,var(--gold-light),var(--gold));color:#1a1305;line-height:1.35;display:flex;flex-direction:column}
-#festPill b{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
-#festPill span{font-size:10.5px;font-weight:500;letter-spacing:.03em}
-#festPill:empty{display:none}
 
-.ss-panel button.ss-big{min-height:104px;gap:6px;border-radius:22px}
-.ss-panel button.ss-big svg{width:34px;height:34px;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
-.ss-panel button.ig{background:linear-gradient(135deg,rgba(131,58,180,.45),rgba(253,29,29,.35),rgba(252,176,69,.35));border-color:rgba(253,120,90,.5)}
-.ss-panel button.ig svg{stroke:#fff}
-.ss-panel button.wa{background:rgba(37,211,102,.22);border-color:rgba(37,211,102,.55)}
-.ss-panel button.wa svg{stroke:#4be38a}
-.ss-row{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.ss-row button{min-height:58px;border-radius:14px}
-.ss-row button b{font-size:12px}
-.ss-hint{grid-column:1/-1;text-align:center;font-size:10px;letter-spacing:.06em;color:rgba(245,240,232,.45);line-height:1.5}
-#shareNow{position:fixed;left:50%;bottom:calc(40px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:280;display:none;padding:16px 34px;border-radius:100px;border:1px solid var(--gold);background:linear-gradient(135deg,var(--gold-light),var(--gold));color:#1a1305;font-family:'Jost',sans-serif;font-size:13px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;-webkit-tap-highlight-color:transparent;box-shadow:0 8px 30px rgba(0,0,0,.5)}
-#shareNow.show{display:block}
 
 /* START BUTTON */
 #startBtn{
@@ -196,9 +151,6 @@ img.start-logo{width:140px;height:140px;object-fit:contain;margin-bottom:44px;fi
 .dish-thumb{flex:1 0 auto}
 #actionBar{left:0!important;right:0!important;transform:none!important;width:100%!important;max-width:100%!important;gap:6px;padding:0 6px;
   bottom:calc(112px + env(safe-area-inset-bottom,0px))!important}
-#modeToggle{left:0!important;right:0!important;transform:none!important;width:calc(100% - 12px);margin:0 6px;
-  bottom:calc(164px + env(safe-area-inset-bottom,0px))!important}
-#modeToggle button{flex:1;padding:0 6px}
 
 /* FALLBACK 3D VIEWER */
 #fallback{position:fixed;inset:0;z-index:1000;display:none;flex-direction:column;background:radial-gradient(ellipse at 50% 35%,#1b1610,#060504 70%)}
@@ -219,6 +171,8 @@ img.start-logo{width:140px;height:140px;object-fit:contain;margin-bottom:44px;fi
 #fbFromErr{padding:14px 30px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;border-radius:100px;border:1px solid var(--gold);background:linear-gradient(135deg,var(--gold-light),var(--gold));color:#1a1305;font-weight:500}
 #fbLink{position:fixed;top:calc(72px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);z-index:220;display:none;white-space:nowrap;padding:9px 18px;border-radius:100px;border:1px solid var(--gold-border);background:var(--glass-dark);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);color:var(--gold-light);font-size:10px;letter-spacing:.14em;text-transform:uppercase}
 #fbLink.show{display:block}
+
+{display:none!important}
 </style>
 </head>
 <body>
@@ -251,37 +205,8 @@ img.start-logo{width:140px;height:140px;object-fit:contain;margin-bottom:44px;fi
 <div id="swipeZone"></div>
 
 <!-- HUD -->
-<div id="hudCard"><div id="hudPill"><div id="hudName"></div></div><div class="tags" id="hudTags"></div><div id="festPill"></div></div>
 
 <div id="spinToast"></div>
-<div id="recPill">● REC <span id="recT"></span></div>
-<div id="shareSheet"><div class="ss-panel">
-  <div class="ss-title">Share this dish</div>
-  <button data-k="ig" class="ss-big ig">
-    <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.4" cy="6.6" r=".6" fill="#fff"/></svg>
-    <b>Instagram Reel</b><small id="reelSub">10 sec · hashtags copied</small>
-  </button>
-  <button data-k="wa" class="ss-big wa">
-    <svg viewBox="0 0 24 24"><path d="M3 21l1.6-4.8A8.5 8.5 0 1 1 8 19.5L3 21z"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.6-2-1-1 .8c-1-.4-2-1.4-2.4-2.4l.8-1-1-2L9 8.5z"/></svg>
-    <b>WhatsApp</b><small>Photo + video to friends</small>
-  </button>
-  <div class="ss-row">
-    <button data-k="photo"><b>📷 Photo</b></button>
-    <button data-k="story"><b>📱 Story</b></button>
-    <button data-k="status"><b>🟢 Status</b></button>
-  </div>
-  <div class="ss-hint">Instagram: caption &amp; hashtags are copied, just paste them.</div>
-  <button class="ss-close" data-k="close">Close</button>
-</div></div>
-<button id="shareNow">Tap to share ▶</button>
-<button id="snapBtn" aria-label="Share">
-  <svg viewBox="0 0 24 24" aria-hidden="true">
-    <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
-    <line x1="8.6" y1="10.5" x2="15.4" y2="6.5"/><line x1="8.6" y1="13.5" x2="15.4" y2="17.5"/>
-  </svg>
-</button>
-<button id="soundBtn" aria-label="Sound on or off">🔊</button>
-<div id="modeToggle"><button data-m="card" class="on">View on card</button><button data-m="table">View on table</button></div>
 <div id="actionBar">
   <a data-a="reserve" class="primary" target="_blank" rel="noopener">Reserve Table</a>
   <a data-a="directions" target="_blank" rel="noopener">Directions</a>
@@ -375,7 +300,6 @@ const dishes = [
   { name:"Mango Petal Tower",     folder:"mangopetaltower",      model:"mangopetaltower.glb",      thumb:"mangopetaltower.png",      scale:"1.5 1.5 1.5", rotation:"90 90 90", tag:"Dessert Special", veg:true, spice:0 }
 ];
 
-var tablePaused=false, prepT=null;
 let currentIndex=-1, arStarted=false, starting=false, modelTimeout=null, swipeHintShown=false, markerFound=false;
 
 const $=s=>document.querySelector(s);
@@ -383,10 +307,9 @@ const modelEntity=$('#modelEntity'),
   carousel=$('#dishCarousel'), logo=$('#logo'), scanHint=$('#scanHint'), target=$('#target1'),
   arScene=$('#arScene'), startScreen=$('#startScreen'), loadingOverlay=$('#loadingOverlay'),
   loadingStatus=$('#loadingStatus'), errorOverlay=$('#errorOverlay'), modelLoader=$('#modelLoader'),
-  swipeZone=$('#swipeZone'), swipeHint=$('#swipeHint'), swipeFlash=$('#swipeFlash'), dishCounter=$('#dishCounter'),
-  hudCard=$('#hudCard');
+  swipeZone=$('#swipeZone'), swipeHint=$('#swipeHint'), swipeFlash=$('#swipeFlash'), dishCounter=$('#dishCounter');
 
-const alwaysVisible=[carousel,logo,dishCounter,$('#actionBar'),$('#snapBtn'),$('#modeToggle'),$('#soundBtn')];
+const alwaysVisible=[carousel,logo,dishCounter,$('#actionBar')];
 
 /* carousel setup */
 dishes.forEach((dish,i)=>{
@@ -421,12 +344,7 @@ function selectDish(index){
   modelEntity.addEventListener('model-loaded',()=>{if(myTok!==loadTok)return; modelLoader.classList.remove('show');clearTimeout(modelTimeout)},{once:true});
   modelTimeout=setTimeout(()=>modelLoader.classList.remove('show'),25000);
 
-  $('#hudName').textContent=dish.name;
-  $('#hudTags').innerHTML=[
-    dish.veg===undefined?'':`<span class="tag">${dish.veg?'🟢 Veg':'🔴 Non-veg'}</span>`,
-    dish.spice?`<span class="tag">${'🌶'.repeat(dish.spice)}</span>`:'',
-    dish.tag?`<span class="tag">★ ${dish.tag}</span>`:''].join('');
-  curDish=dish; clearTimeout(prepT); prepT=setTimeout(()=>prepTable(dish),1800);
+  curDish=dish;
 
   document.querySelectorAll('.dish-thumb').forEach((el,i)=>el.classList.toggle('active',i===index));
   {const el=document.querySelectorAll('.dish-thumb')[index]; try{carousel.scrollTo({left:el.offsetLeft-carousel.clientWidth/2+el.clientWidth/2,behavior:'smooth'})}catch(e){carousel.scrollLeft=el.offsetLeft-carousel.clientWidth/2+el.clientWidth/2}}
@@ -456,216 +374,10 @@ function showSwipeHintOnce(){
   setTimeout(()=>{swipeHint.classList.add('show');setTimeout(()=>swipeHint.classList.remove('show'),2500)},1200);
 }
 
-const store={
-  get(k,d){try{const v=JSON.parse(localStorage.getItem(k));return v==null?d:v}catch(e){return d}},
-  set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
-};
-
 const waMsg=encodeURIComponent(`Hi ${CONFIG.name}! I saw your AR menu and I'd like to reserve a table.`);
 const LINKS={reserve:`https://wa.me/${CONFIG.whatsapp}?text=${waMsg}`,directions:CONFIG.mapsUrl,call:`tel:${CONFIG.phone}`};
 document.querySelectorAll('#actionBar a').forEach(a=>{
   a.href=LINKS[a.dataset.a];
-});
-
-/* Frame & Snapshot */
-function rr(x,a,b,w,h,r){x.beginPath();x.moveTo(a+r,b);x.arcTo(a+w,b,a+w,b+h,r);x.arcTo(a+w,b+h,a,b+h,r);x.arcTo(a,b+h,a,b,r);x.arcTo(a,b,a+w,b,r);x.closePath()}
-function drawFrame(x,W,H,d){
-  const gold='#E8C97A', serif='"Cormorant Garamond",Georgia,serif', sans='Jost,Helvetica,Arial,sans-serif', m=W*.035;
-  x.textAlign='center'; x.textBaseline='alphabetic';
-  let g=x.createLinearGradient(0,0,0,H*.2); g.addColorStop(0,'rgba(0,0,0,.55)'); g.addColorStop(1,'rgba(0,0,0,0)'); x.fillStyle=g; x.fillRect(0,0,W,H*.2);
-  g=x.createLinearGradient(0,H*.76,0,H); g.addColorStop(0,'rgba(0,0,0,0)'); g.addColorStop(1,'rgba(0,0,0,.85)'); x.fillStyle=g; x.fillRect(0,H*.76,W,H*.24);
-  if(CONFIG.photoFrame){
-    x.lineWidth=W*.006; x.strokeStyle=gold; x.strokeRect(m,m,W-2*m,H-2*m);
-    x.lineWidth=W*.0022; x.strokeStyle='rgba(232,201,122,.65)'; x.strokeRect(m*1.7,m*1.7,W-3.4*m,H-3.4*m);
-    x.fillStyle=gold; [[m,m],[W-m,m],[m,H-m],[W-m,H-m]].forEach(([cx,cy])=>{x.save();x.translate(cx,cy);x.rotate(Math.PI/4);const t=W*.014;x.fillRect(-t,-t,2*t,2*t);x.restore()});
-    const title=`${CONFIG.frameTitle||'OOTY'} ${new Date().getFullYear()}`;
-    x.font=`700 ${W*.05}px ${sans}`; if('letterSpacing' in x) x.letterSpacing=(W*.008)+'px';
-    const tw=x.measureText(title).width+W*.1, th=W*.1, tx=(W-tw)/2, ty=m*2.2;
-    const rg=x.createLinearGradient(tx,0,tx+tw,0); rg.addColorStop(0,'#E8C97A'); rg.addColorStop(1,'#C9A84C');
-    rr(x,tx,ty,tw,th,th/2); x.fillStyle=rg; x.fill();
-    x.fillStyle='#1a1305'; x.textBaseline='middle'; x.fillText(title,W/2,ty+th/2+W*.003); x.textBaseline='alphabetic';
-    if(CONFIG.frameSub){x.font=`500 ${W*.028}px ${sans}`; x.fillStyle='#F5F0E8'; x.fillText(CONFIG.frameSub.toUpperCase(),W/2,ty+th+W*.055)}
-    if('letterSpacing' in x) x.letterSpacing='0px';
-  }
-  x.fillStyle='#FFD76A'; x.font=`700 ${W*.075}px ${serif}`; x.fillText(d.name,W/2,H*.895);
-  x.fillStyle='#FFFFFF'; x.font=`700 ${W*.03}px ${sans}`; x.fillText(`${CONFIG.name.toUpperCase()} · ${CONFIG.tagline.toUpperCase()}`,W/2,H*.93);
-  if(CONFIG.instagram){x.fillStyle=gold; x.font=`500 ${W*.03}px ${sans}`; x.fillText(CONFIG.instagram,W/2,H*.953)}
-}
-
-/* Festival */
-const festEl=$('#festPill');
-function activeFestival(){
-  const n=new Date(), t0=new Date(n.getFullYear(),n.getMonth(),n.getDate()); let best=null;
-  (CONFIG.festivals||[]).forEach(f=>{const p=String(f.date).split('-'), d=new Date(+p[0],+p[1]-1,+p[2]), left=Math.round((d-t0)/864e5);
-    if(left>=0&&left<=(CONFIG.festivalShowDays||21)&&(!best||left<best.left)) best={...f,left}});
-  return best;
-}
-const festLabel=f=>`${f.emoji||'🎉'} ${f.name} · ${f.left===0?'Today!':f.left===1?'Tomorrow':f.left+' days left'}`;
-function refreshFest(){const f=activeFestival(); festEl.innerHTML=f?`<b>${festLabel(f)}</b>${f.offer?`<span>${f.offer}</span>`:''}`:''}
-refreshFest(); setInterval(refreshFest,60000);
-
-/* Share / Render scene */
-let logoTint=null;
-(function(){const im=new Image(); im.onload=()=>{try{const c=document.createElement('canvas'); c.width=im.naturalWidth; c.height=im.naturalHeight; const x=c.getContext('2d');
-  x.drawImage(im,0,0); x.globalCompositeOperation='source-in'; x.fillStyle='#F5F0E8'; x.fillRect(0,0,c.width,c.height); logoTint=c}catch(e){}}; im.src='logo1.png'})();
-const SANS='Jost,Helvetica,Arial,sans-serif';
-function drawCover(x,src,sw0,sh0,W,H){
-  const cr=W/H; let sw=sw0, sh=sh0, sx=0, sy=0;
-  if(sw0/sh0>cr){sw=sh0*cr; sx=(sw0-sw)/2}else{sh=sw0/cr; sy=(sh0-sh)/2}
-  x.drawImage(src,sx,sy,sw,sh,0,0,W,H);
-}
-const sceneC=document.createElement('canvas');
-function renderScene(){
-  const dpr=Math.min(devicePixelRatio||1,2), W=Math.round(innerWidth*dpr), H=Math.round(innerHeight*dpr);
-  if(sceneC.width!==W||sceneC.height!==H){sceneC.width=W; sceneC.height=H}
-  const x=sceneC.getContext('2d'), video=document.querySelector('video'), gl=arScene.renderer.domElement;
-  x.fillStyle='#060504'; x.fillRect(0,0,W,H);
-  if(video&&video.videoWidth) drawCover(x,video,video.videoWidth,video.videoHeight,W,H);
-  arScene.renderer.render(arScene.object3D,arScene.camera);
-  x.drawImage(gl,0,0,W,H);
-  return sceneC;
-}
-function wrapText(x,t,maxW){const w=t.split(' '),L=[]; let l=''; w.forEach(a=>{const n=l?l+' '+a:a; if(x.measureText(n).width>maxW&&l){L.push(l);l=a}else l=n}); if(l)L.push(l); return L}
-function drawFest(x,W,H){
-  const f=activeFestival(); if(!f) return;
-  const a=festLabel(f), b=f.offer||''; x.save(); x.textAlign='center'; x.textBaseline='alphabetic';
-  x.font=`700 ${W*.034}px ${SANS}`; const wa=x.measureText(a).width;
-  x.font=`500 ${W*.028}px ${SANS}`; const wb=b?x.measureText(b).width:0;
-  const w=Math.min(W*.88,Math.max(wa,wb)+W*.09), h=b?W*.125:W*.08, px=(W-w)/2, py=H*.775;
-  const g=x.createLinearGradient(px,0,px+w,0); g.addColorStop(0,'#E8C97A'); g.addColorStop(1,'#C9A84C');
-  rr(x,px,py,w,h,h*.3); x.fillStyle=g; x.fill(); x.fillStyle='#1a1305';
-  x.font=`700 ${W*.034}px ${SANS}`; x.fillText(a.toUpperCase(),W/2,py+(b?h*.4:h*.64));
-  if(b){x.font=`500 ${W*.028}px ${SANS}`; x.fillText(b,W/2,py+h*.76)}
-  x.restore();
-}
-function drawStatus(x,W,H){
-  const m=W*.035; x.save();
-  if(logoTint){const lw=W*.15, lh=lw*logoTint.height/logoTint.width; x.drawImage(logoTint,m*2.2,m*2.2,lw,lh)}
-  x.textAlign='center'; x.textBaseline='alphabetic';
-  x.font=`600 ${W*.036}px ${SANS}`; const lines=wrapText(x,CONFIG.statusOffer||'',W*.74).slice(0,2);
-  const lh=W*.05, h=lines.length*lh+W*.105, w=W*.84, px=(W-w)/2, py=H*.655;
-  rr(x,px,py,w,h,W*.04); x.fillStyle='rgba(6,5,4,.74)'; x.fill(); x.lineWidth=W*.003; x.strokeStyle='rgba(232,201,122,.8)'; x.stroke();
-  x.fillStyle='#FFFFFF'; lines.forEach((t,i)=>x.fillText(t,W/2,py+W*.065+i*lh));
-  x.font=`500 ${W*.026}px ${SANS}`; x.fillStyle='#E8C97A';
-  x.fillText(`RESERVE ON WHATSAPP · ${CONFIG.phone}`,W/2,py+h-W*.026);
-  x.restore();
-}
-async function loadFonts(){try{await document.fonts.load('700 20px "Cormorant Garamond"'); await document.fonts.load('700 20px Jost')}catch(e){}}
-const caption=d=>`${d.name} at ${CONFIG.name}, Ooty 🍜\n${CONFIG.hashtags||''} ${CONFIG.instagram||''}`.trim();
-async function copyText(t){try{await navigator.clipboard.writeText(t);return true}catch(e){return false}}
-
-function saveFiles(files){
-  files.forEach(f=>{const a=document.createElement('a'); a.href=URL.createObjectURL(f); a.download=f.name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(a.href),4000)});
-  toast('Saved to your phone — share it from your gallery');
-}
-function shareFiles(files,text){
-  return new Promise(async res=>{
-    if(navigator.canShare&&navigator.canShare({files})){
-      try{await navigator.share({files,text,title:CONFIG.name}); return res(true)}
-      catch(e){
-        if(e.name==='AbortError') return res(false);
-        if(e.name==='NotAllowedError'){
-          const b=$('#shareNow'); b.classList.add('show');
-          const hide=setTimeout(()=>{b.classList.remove('show'); res(false)},45000);
-          b.onclick=async()=>{
-            clearTimeout(hide); b.classList.remove('show');
-            try{await navigator.share({files,text,title:CONFIG.name}); res(true)}
-            catch(err){if(err.name!=='AbortError') saveFiles(files); res(false)}
-          };
-          return;
-        }
-      }
-    }
-    saveFiles(files); res(false);
-  });
-}
-
-async function buildImage(kind){
-  const d=dishes[currentIndex], sc=renderScene(), OW=kind==='photo'?sc.width:1080, OH=kind==='photo'?sc.height:1920;
-  const c=document.createElement('canvas'); c.width=OW; c.height=OH; const x=c.getContext('2d');
-  drawCover(x,sc,sc.width,sc.height,OW,OH);
-  await loadFonts();
-  drawFrame(x,OW,OH,d); drawFest(x,OW,OH); if(kind==='status') drawStatus(x,OW,OH);
-  const blob=await new Promise(r=>c.toBlob(r,'image/jpeg',.92));
-  return new File([blob],`${CONFIG.name.toLowerCase()}-${kind}.jpg`.replace(/\s+/g,'-'),{type:'image/jpeg'});
-}
-async function shareImage(kind){
-  toast('Creating your image…');
-  const f=await buildImage(kind);
-  await shareFiles([f],caption(dishes[currentIndex]));
-}
-
-let recording=false;
-async function captureReel(sec){
-  if(recording) throw new Error('busy');
-  if(!window.MediaRecorder){toast('Video recording is not supported on this browser'); throw new Error('no-recorder')}
-  const OW=720, OH=1280, d=dishes[currentIndex], DUR=(sec||CONFIG.reelSeconds||10)*1000;
-  const c=document.createElement('canvas'); c.width=OW; c.height=OH; const x=c.getContext('2d');
-  await loadFonts();
-  const stream=c.captureStream(30); let adest=null;
-  try{if(actx&&master&&!muted&&CONFIG.sound){adest=actx.createMediaStreamDestination(); master.connect(adest); stream.addTrack(adest.stream.getAudioTracks()[0])}}catch(e){adest=null}
-  const mime=['video/mp4;codecs=avc1','video/mp4','video/webm;codecs=vp9','video/webm;codecs=vp8','video/webm'].find(t=>MediaRecorder.isTypeSupported(t))||'';
-  const mr=new MediaRecorder(stream,mime?{mimeType:mime,videoBitsPerSecond:4e6}:{videoBitsPerSecond:4e6}), chunks=[];
-  mr.ondataavailable=e=>{if(e.data&&e.data.size) chunks.push(e.data)};
-  const pill=$('#recPill'), recT=$('#recT');
-  return new Promise(resolve=>{
-    mr.onstop=()=>{
-      recording=false; pill.classList.remove('show'); try{if(adest) master.disconnect(adest)}catch(e){}
-      const type=(mr.mimeType||mime||'video/webm').split(';')[0], ext=type.includes('mp4')?'mp4':'webm';
-      resolve(new File([new Blob(chunks,{type})],`${CONFIG.name.toLowerCase()}-reel.${ext}`.replace(/\s+/g,'-'),{type}));
-    };
-    recording=true; pill.classList.add('show'); mr.start(250);
-    playEntry();
-    const t0=performance.now();
-    (function frame(){
-      if(!recording) return;
-      try{
-        const el=performance.now()-t0, sc=renderScene();
-        drawCover(x,sc,sc.width,sc.height,OW,OH); drawFrame(x,OW,OH,d); drawFest(x,OW,OH);
-        recT.textContent=Math.max(1,Math.ceil((DUR-el)/1000))+'s';
-        if(el>=DUR){mr.stop(); return}
-      }catch(err){
-        console.warn('Reel frame error',err);
-        try{mr.stop()}catch(e){recording=false; pill.classList.remove('show')}
-        return;
-      }
-      requestAnimationFrame(frame);
-    })();
-  });
-}
-
-async function shareInstagram(){
-  const d=dishes[currentIndex], cap=caption(d);
-  const ok=await copyText(cap);
-  toast(ok?'Caption + hashtags copied. Recording reel…':'Recording reel…');
-  const vid=await captureReel(CONFIG.reelSeconds);
-  toast(ok?'Choose Instagram → Reels, then paste caption':'Choose Instagram → Reels');
-  await shareFiles([vid],cap);
-}
-async function shareWhatsApp(){
-  const d=dishes[currentIndex], cap=`${d.name} at ${CONFIG.name}, Ooty 😍`;
-  toast('Preparing photo + video…');
-  const img=await buildImage('photo');
-  const vid=await captureReel(CONFIG.waReelSeconds||6);
-  await shareFiles([img,vid],cap);
-}
-
-$('#reelSub').textContent=(CONFIG.reelSeconds||10)+' sec · hashtags copied';
-$('#snapBtn').addEventListener('click',()=>{
-  if(!markerFound){toast('Point at the menu card first'); return}
-  $('#shareSheet').classList.add('show');
-});
-$('#shareSheet').addEventListener('click',async e=>{
-  const sh=$('#shareSheet'), b=e.target.closest('button');
-  if(e.target===sh||(b&&b.dataset.k==='close')){sh.classList.remove('show'); return}
-  if(!b) return; sh.classList.remove('show');
-  if(!markerFound){toast('Point at the menu card first'); return}
-  try{
-    const k=b.dataset.k;
-    if(k==='ig') await shareInstagram();
-    else if(k==='wa') await shareWhatsApp();
-    else await shareImage(k);
-  }catch(err){console.warn(err); recording=false; $('#recPill').classList.remove('show'); if(err.message!=='no-recorder') toast('Could not create it, try again')}
 });
 
 /* auto-rotate */
@@ -792,7 +504,7 @@ function setupRender(){
   try{r.setPixelRatio(Math.min(window.devicePixelRatio||1,2))}catch(e){}
   r.toneMapping=THREE.ACESFilmicToneMapping; r.toneMappingExposure=CONFIG.exposure;
   r.localClippingEnabled=true; r.shadowMap.enabled=CONFIG.shadowOpacity>0; r.shadowMap.type=THREE.PCFSoftShadowMap;
-  
+
   const es=new THREE.Scene(), g=new THREE.SphereGeometry(10,32,16), col=[], p=g.attributes.position;
   for(let i=0;i<p.count;i++){const t=p.getY(i)/10*.5+.5; const k=.10+.75*t*t; col.push(k*1.0,k*.88,k*.72)}
   g.setAttribute('color',new THREE.Float32BufferAttribute(col,3));
@@ -833,11 +545,10 @@ modelEntity.addEventListener('model-loaded',onModelReady);
 let ENTRY_DUR=1.7; const STEAM_DELAY=.6, BLOB_OP=CONFIG.shadowOpacity/.38; let steamClock=0, revealAng=0;
 const clamp01=v=>Math.max(0,Math.min(1,v)), easeOutCubic=t=>1-Math.pow(1-t,3);
 const easeOutBounce=t=>{const n=7.5625,d=2.75; if(t<1/d)return n*t*t; if(t<2/d)return n*(t-=1.5/d)*t+.75; if(t<2.5/d)return n*(t-=2.25/d)*t+.9375; return n*(t-=2.625/d)*t+.984375};
-function retrigger(el){el.classList.remove('reveal'); void el.offsetWidth; el.classList.add('reveal')}
 function playEntry(){
   shadowPlane.material.opacity=0; spinner.object3D.rotation[CONFIG.spinAxis]-=revealAng; revealAng=0;
   curStyle=CONFIG.revealStyle==='random'?['drop','emerge','orbit','scan','jelly','tempt','cloche','serve','sizzle','toss','whirl','splash','flambe'][Math.floor(Math.random()*13)]:CONFIG.revealStyle;
-  ENTRY_DUR=curStyle==='cloche'?2.1:curStyle==='tempt'?2.2:curStyle==='flambe'?2.0:curStyle==='serve'?1.9:curStyle==='sizzle'?1.8:curStyle==='toss'?1.8:curStyle==='splash'?1.8:curStyle==='whirl'?1.7:curStyle==='refined'?1.7:curStyle==='scan'?1.6:1.4; glintFired=false; entryT=0; steamClock=0; fadeMats.forEach(m=>m.opacity=['refined','tempt','serve','sizzle','toss','whirl','splash','flambe'].includes(curStyle)?0:1); spinner.object3D.scale.setScalar(.001); retrigger(hudCard);
+  ENTRY_DUR=curStyle==='cloche'?2.1:curStyle==='tempt'?2.2:curStyle==='flambe'?2.0:curStyle==='serve'?1.9:curStyle==='sizzle'?1.8:curStyle==='toss'?1.8:curStyle==='splash'?1.8:curStyle==='whirl'?1.7:curStyle==='refined'?1.7:curStyle==='scan'?1.6:1.4; glintFired=false; entryT=0; steamClock=0; fadeMats.forEach(m=>m.opacity=['refined','tempt','serve','sizzle','toss','whirl','splash','flambe'].includes(curStyle)?0:1); spinner.object3D.scale.setScalar(.001);
   steam.forEach((sp,i)=>{const u=sp.userData; u.age=-(i/steam.length)*u.life*(isWarm()?.25:.9); sp.material.opacity=0});
   if(markerFound&&performance.now()-lastSnd>1500){lastSnd=performance.now(); playRevealSound(curStyle)}
 }
@@ -1046,14 +757,13 @@ function preloadNeighbours(i){
 }
 
 /* Audio Synthesis */
-const soundBtn=$('#soundBtn'); let actx=null, master=null, reverb=null, muted=store.get('arm_muted',false), lastSnd=0;
-if(!CONFIG.sound) soundBtn.style.display='none'; else soundBtn.textContent=muted?'🔇':'🔊';
+let actx=null, master=null, reverb=null, lastSnd=0;
 function initAudio(){
   if(!CONFIG.sound) return;
   try{
     if(navigator.audioSession) navigator.audioSession.type='playback';
     if(!actx){const AC=window.AudioContext||window.webkitAudioContext; if(!AC) return;
-      actx=new AC(); master=actx.createGain(); master.gain.value=muted?0:CONFIG.soundVolume; master.connect(actx.destination);
+      actx=new AC(); master=actx.createGain(); master.gain.value=CONFIG.soundVolume; master.connect(actx.destination);
       const len=Math.floor(actx.sampleRate*2.2), ir=actx.createBuffer(2,len,actx.sampleRate);
       for(let c=0;c<2;c++){const d=ir.getChannelData(c); for(let i=0;i<len;i++) d[i]=(Math.random()*2-1)*Math.pow(1-i/len,2.8)}
       reverb=actx.createConvolver(); reverb.buffer=ir; const wet=actx.createGain(); wet.gain.value=.35; reverb.connect(wet); wet.connect(master)}
@@ -1062,7 +772,7 @@ function initAudio(){
 }
 ['touchend','click'].forEach(ev=>document.addEventListener(ev,initAudio,{passive:true}));
 function playRevealSound(style){
-  if(!CONFIG.sound||muted||!actx) return;
+  if(!CONFIG.sound||!actx) return;
   if(actx.state!=='running'){try{actx.resume()}catch(e){} return}
   const now=actx.currentTime;
   const lp=actx.createBiquadFilter(); lp.type='lowpass'; lp.frequency.value=2600; lp.Q.value=.3;
@@ -1080,87 +790,21 @@ function playRevealSound(style){
   note(783.99,t+.32,.06,2.4);
   note(1046.5,t+.50,.045,2.8);
 }
-soundBtn.addEventListener('click',()=>{
-  initAudio(); muted=!muted; store.set('arm_muted',muted); soundBtn.textContent=muted?'🔇':'🔊';
-  if(master) master.gain.value=muted?0:CONFIG.soundVolume;
-  if(!muted) playRevealSound('ding');
-});
-
 function hudFrame(){
   requestAnimationFrame(hudFrame);
   const now=performance.now(), dt=Math.min((now-lastT)/1000,.1); lastT=now;
-  if(tablePaused) return;
   if(spinOn&&markerFound){
     if(CONFIG.spinMode==='sway'){swayT+=dt; const a=d2r(CONFIG.swayDeg)*Math.sin(swayT*2*Math.PI/CONFIG.swaySeconds); spinner.object3D.rotation[CONFIG.spinAxis]+=a-swayAng; swayAng=a}
     else spinner.object3D.rotation[CONFIG.spinAxis]+=d2r(CONFIG.spinDegPerSec)*dt;
   }
   fxUpdate(dt);
-  const live=arStarted&&currentIndex>=0&&markerFound;
-  hudCard.classList.toggle('show',live);
 }
 hudFrame();
 
-/* Table Markerless Placement */
-const modeToggle=$('#modeToggle'), isIOS=/iPad|iPhone|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
-let tableMV=null, tableOpen=false, tableT=0, xrActive=false;
-if(!CONFIG.tableView||!(isIOS||/Android/i.test(navigator.userAgent))) modeToggle.style.display='none';
+/* Helpers */
 function toast(msg){const t=$('#spinToast'); t.textContent=msg; t.classList.add('show'); clearTimeout(toastT); toastT=setTimeout(()=>t.classList.remove('show'),2400)}
 const mindar=()=>arScene.systems&&arScene.systems['mindar-image-system'];
-const abs=path=>new URL(path,location.href).href;
-
-function prepTable(dish){
-  if(!CONFIG.tableView||modeToggle.style.display==='none'||!customElements.get('model-viewer')) return;
-  if(!tableMV){
-    tableMV=document.createElement('model-viewer');
-    tableMV.setAttribute('ar',''); tableMV.setAttribute('ar-modes',CONFIG.tableEngine==='webxr'?'webxr scene-viewer quick-look':'scene-viewer webxr quick-look');
-    tableMV.setAttribute('interaction-prompt','none'); tableMV.setAttribute('shadow-intensity','0'); tableMV.setAttribute('reveal','auto');
-    tableMV.addEventListener('load',()=>{try{const d=tableMV.getDimensions(), m=Math.max(d.x,d.y,d.z), r=(CONFIG.tableSize||.24)/m;
-      if(m>0&&(r<.6||r>1.6)) tableMV.setAttribute('scale',r+' '+r+' '+r); else tableMV.removeAttribute('scale')}catch(e){}});
-    tableMV.setAttribute('ar-placement','floor'); tableMV.setAttribute('ar-scale','auto'); tableMV.setAttribute('loading','eager');
-    tableMV.style.cssText='position:fixed;left:0;top:0;width:2px;height:2px;opacity:0;pointer-events:none;z-index:-2';
-    tableMV.addEventListener('ar-status',e=>{const st=e.detail&&e.detail.status;
-      if(st==='session-started') xrActive=true;
-      if(st==='not-presenting'||st==='failed'){xrActive=false; resumeFromTable(true)}});
-    document.body.appendChild(tableMV);
-  }
-  const url=abs(`3d-model/${dish.folder}/${dish.model}`);
-  if(tableMV.getAttribute('src')!==url){tableMV.removeAttribute('scale'); tableMV.setAttribute('src',url)}
-  if(dish.usdz) tableMV.setAttribute('ios-src',abs(`3d-model/${dish.folder}/${dish.usdz}`)); else tableMV.removeAttribute('ios-src');
-  tableMV.setAttribute('alt',dish.name);
-}
-function pauseAR(){
-  tablePaused=true; try{arScene.renderer.setAnimationLoop(null)}catch(e){}
-}
-function resumeAR(){
-  tablePaused=false; lastT=performance.now();
-  try{if(typeof arScene.render==='function') arScene.renderer.setAnimationLoop(arScene.render.bind(arScene))}catch(e){console.warn(e)}
-}
-async function restartMindAR(){
-  const m=mindar(); if(!m) return;
-  try{await m.stop()}catch(e){}
-  try{await m.start()}catch(e){console.warn('AR restart failed',e);location.reload()}
-}
-function resumeFromTable(force){
-  if(!tableOpen||xrActive||(!force&&Date.now()-tableT<1500)) return;
-  tableOpen=false; resumeAR(); hideTarget(); setMode('card');
-  const v=document.querySelector('video'), tr=v&&v.srcObject&&v.srcObject.getVideoTracks&&v.srcObject.getVideoTracks()[0];
-  if(!(tr&&tr.readyState==='live'&&!tr.muted)) restartMindAR();
-}
-['visibilitychange','pageshow','focus'].forEach(ev=>(ev==='focus'||ev==='pageshow'?window:document).addEventListener(ev,()=>{if(!document.hidden) resumeFromTable()}));
-function hideTarget(){
-  markerFound=false; try{target.object3D.visible=false}catch(e){}
-  if(arStarted) scanHint.style.opacity='1';
-}
-function openTable(){
-  if(!tableMV||!tableMV.loaded){toast('Preparing 3D dish… try again');return}
-  if(!tableMV.canActivateAR){toast(isIOS?'Open this page in Safari for table view':'Table view needs Chrome with ARCore');return}
-  tableOpen=true; tableT=Date.now(); xrActive=false; setMode('table');
-  hideTarget(); pauseAR();
-  if(!isIOS){try{const m=mindar(); if(m) m.stop()}catch(e){}}
-  try{tableMV.activateAR()}catch(e){console.warn(e);tableOpen=false;resumeAR();setMode('card');restartMindAR();toast('Could not open table view')}
-}
-const setMode=m=>modeToggle.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.m===m));
-modeToggle.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{if(b.dataset.m==='table') openTable(); else setMode('card')}));
+function pauseAR(){try{arScene.renderer.setAnimationLoop(null)}catch(e){}}
 
 /* Fallback 3D Viewer */
 const fb=$('#fallback'), fbV=$('#fbViewer'), fbAR=$('#fbAR'), fbLink=$('#fbLink'), fbBar=$('#fbBar'), fbCar=$('#fbCarousel');
@@ -1195,7 +839,7 @@ function fbSelect(i){
 function openFallback(reason){
   if(fbOpen) return; fbOpen=true; clearTimeout(fbLinkT);
   try{pauseAR(); const m=mindar(); if(m) Promise.resolve(m.stop()).catch(()=>{})}catch(e){}
-  ['#arScene','#startScreen','#loadingOverlay','#errorOverlay','#actionBar','#snapBtn','#modeToggle','#soundBtn','#dishCarousel','#logo','#hudCard','#scanHint','#swipeZone','#swipeHint','#modelLoader','#fbLink'].forEach(q=>{const el=document.querySelector(q); if(el) el.style.display='none'});
+  ['#arScene','#startScreen','#loadingOverlay','#errorOverlay','#actionBar','#dishCarousel','#logo','#scanHint','#swipeZone','#swipeHint','#modelLoader','#fbLink'].forEach(q=>{const el=document.querySelector(q); if(el) el.style.display='none'});
   $('#fbNote').textContent=reason==='denied'?'The camera is off, so here is the 3D view. Allow the camera to see dishes on the menu card.'
     :reason==='manual'?'Turn each dish around with your finger.':'AR is not available on this phone, but you can still explore every dish in 3D.';
   fb.classList.add('show'); fbSelect(currentIndex>=0?currentIndex:0);
@@ -1205,7 +849,7 @@ $('#fbFromErr').addEventListener('click',()=>openFallback('denied'));
 fbLink.addEventListener('click',()=>openFallback('manual'));
 function armFbLink(){
   clearTimeout(fbLinkT); if(fbOpen) return;
-  fbLinkT=setTimeout(()=>{if(!markerFound&&!fbOpen&&arStarted&&!tableOpen) fbLink.classList.add('show')},15000);
+  fbLinkT=setTimeout(()=>{if(!markerFound&&!fbOpen&&arStarted) fbLink.classList.add('show')},15000);
 }
 arScene.addEventListener('arError',()=>openFallback('arerror'));
 
