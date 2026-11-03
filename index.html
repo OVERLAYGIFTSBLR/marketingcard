@@ -67,22 +67,28 @@ img.start-logo{width:140px;height:140px;object-fit:contain;margin-bottom:44px;fi
 .dish-thumb span{font-size:8.5px;letter-spacing:.05em;color:var(--text-sub);font-weight:700;text-align:center;max-width:58px;line-height:1.3;text-transform:uppercase}
 .dish-thumb.active span{color:var(--text-main)}
 
-/* SCAN HINT */
-#scanHint{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:16px;pointer-events:none;z-index:10;opacity:0;transition:opacity .5s}
-.scan-frame{position:relative;width:180px;height:180px;border:1px dashed rgba(201,168,76,.35);border-radius:6px}
-.scan-line{position:absolute;left:8px;right:8px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);animation:scanLine 2.4s ease-in-out infinite}
-@keyframes scanLine{0%,100%{top:8px;opacity:0}10%,90%{opacity:1}50%{top:calc(100% - 8px)}}
-#scanHint p{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,240,232,.45)}
+/* SCAN HINT (corner brackets) */
+#scanHint{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:14px;pointer-events:none;z-index:10;opacity:0;transition:opacity .5s}
+.scan-frame{position:relative;width:180px;height:180px;animation:framePulse 2s ease-in-out infinite}
+.scan-frame i{position:absolute;width:30px;height:30px;border:2px solid var(--gold);transition:border-color .25s,box-shadow .25s}
+.scan-frame i.tl{top:0;left:0;border-right:0;border-bottom:0;border-top-left-radius:8px}
+.scan-frame i.tr{top:0;right:0;border-left:0;border-bottom:0;border-top-right-radius:8px}
+.scan-frame i.bl{bottom:0;left:0;border-right:0;border-top:0;border-bottom-left-radius:8px}
+.scan-frame i.br{bottom:0;right:0;border-left:0;border-top:0;border-bottom-right-radius:8px}
+.scan-line{position:absolute;left:12px;right:12px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);animation:scanLine 2.4s ease-in-out infinite;transition:background .25s}
+@keyframes scanLine{0%,100%{top:12px;opacity:0}10%,90%{opacity:1}50%{top:calc(100% - 12px)}}
+@keyframes framePulse{0%,100%{transform:scale(1);opacity:.75}50%{transform:scale(1.06);opacity:1}}
+.scan-icon{width:30px;height:30px;stroke:var(--gold-light);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;opacity:.85}
+#scanHint p{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(245,240,232,.6)}
+#scanHint.found .scan-frame{animation:frameFound .5s ease-out}
+#scanHint.found .scan-frame i{border-color:#4ade80;box-shadow:0 0 14px rgba(74,222,128,.7)}
+#scanHint.found .scan-line{background:linear-gradient(90deg,transparent,#4ade80,transparent)}
+#scanHint.found .scan-icon{stroke:#4ade80}
+@keyframes frameFound{0%{transform:scale(1.12)}100%{transform:scale(1)}}
 
 /* SWIPE */
 #swipeZone{position:fixed;inset:0;z-index:100;touch-action:pan-y;pointer-events:none}
 #swipeZone.active{pointer-events:auto}
-#swipeHint{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);display:flex;gap:24px;pointer-events:none;z-index:200;opacity:0;transition:opacity .4s}
-#swipeHint.show{opacity:1}
-.swipe-arrow{display:flex;flex-direction:column;align-items:center;gap:6px}
-.swipe-arrow-icon{width:44px;height:44px;border:1px solid var(--gold-border);border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--glass-dark)}
-.swipe-arrow-icon svg{width:18px;height:18px;stroke:var(--gold);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
-.swipe-arrow span{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:rgba(245,240,232,.4)}
 #dishCounter{display:none!important;position:fixed;top:54px;left:50%;transform:translateX(-50%);background:var(--glass-dark);border:1px solid var(--gold-border);border-radius:var(--radius-pill);padding:5px 16px;gap:8px;z-index:200;opacity:0;pointer-events:none;transition:opacity .4s}
 .counter-dot{width:4px;height:4px;border-radius:50%;background:rgba(201,168,76,.25);transition:.25s}
 .counter-dot.active{background:var(--gold);transform:scale(1.4)}
@@ -91,6 +97,29 @@ img.start-logo{width:140px;height:140px;object-fit:contain;margin-bottom:44px;fi
 #swipeFlash.right{background:linear-gradient(to left,rgba(201,168,76,.06),transparent)}
 #swipeFlash.flash{animation:flashFade .35s ease-out forwards}
 @keyframes flashFade{0%{opacity:1}100%{opacity:0}}
+
+/* ONBOARDING */
+#onboard{position:fixed;inset:0;z-index:400;display:none;align-items:center;justify-content:center;padding:28px;background:rgba(6,5,4,.8);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);opacity:0;transition:opacity .35s}
+#onboard.show{display:flex}
+#onboard.in{opacity:1}
+.ob-card{width:100%;max-width:300px;display:flex;flex-direction:column;align-items:center;text-align:center;padding:30px 24px 20px;background:var(--glass-dark);border:1px solid var(--gold-border);border-radius:24px}
+.ob-step{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.ob-icon{width:84px;height:84px;margin-bottom:16px;display:flex;align-items:center;justify-content:center}
+.ob-icon svg{width:76px;height:76px;stroke:var(--gold-light);fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;overflow:visible}
+.ob-card h2{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:26px;line-height:1.15;color:var(--cream);margin-bottom:8px}
+.ob-card p{font-size:13px;line-height:1.7;color:rgba(245,240,232,.62);font-weight:300;margin-bottom:20px}
+.ob-dots{display:flex;gap:8px;margin-bottom:20px}
+.ob-dots i{width:6px;height:6px;border-radius:50%;background:rgba(201,168,76,.25);transition:.25s}
+.ob-dots i.on{background:var(--gold);transform:scale(1.35)}
+#obNext{min-height:46px;padding:0 38px;border-radius:var(--radius-pill);border:1px solid var(--gold);background:linear-gradient(135deg,var(--gold-light),var(--gold));color:#1a1305;font-family:'Jost',sans-serif;font-size:12px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+#obNext:active{transform:scale(.96)}
+#obSkip{margin-top:8px;padding:8px 14px;background:none;border:0;color:rgba(245,240,232,.4);font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.ob-scan .brk{animation:obPulse 1.6s ease-in-out infinite;transform-origin:36px 36px}
+.ob-swipe .dot{animation:obSwipe 1.7s ease-in-out infinite}
+.ob-tap .ring{animation:obTap 1.5s ease-out infinite;transform-origin:36px 36px}
+@keyframes obPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+@keyframes obSwipe{0%,100%{transform:translateX(-14px)}50%{transform:translateX(14px)}}
+@keyframes obTap{0%{transform:scale(.5);opacity:1}100%{transform:scale(1.5);opacity:0}}
 
 /* HUD */
 
@@ -197,10 +226,6 @@ img.start-logo{width:140px;height:140px;object-fit:contain;margin-bottom:44px;fi
 <img src="logo1.png" id="logo" alt="Logo">
 <div id="dishCounter"></div>
 
-<div id="swipeHint">
-  <div class="swipe-arrow"><div class="swipe-arrow-icon"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></div><span>Prev</span></div>
-  <div class="swipe-arrow"><div class="swipe-arrow-icon"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></div><span>Next</span></div>
-</div>
 <div id="swipeFlash"></div>
 <div id="swipeZone"></div>
 
@@ -213,7 +238,24 @@ img.start-logo{width:140px;height:140px;object-fit:contain;margin-bottom:44px;fi
   <a data-a="call">Call</a>
 </div>
 
-<div id="scanHint"><div class="scan-frame"><div class="scan-line"></div></div><p>Point at menu card</p></div>
+<div id="scanHint">
+  <div class="scan-frame"><i class="tl"></i><i class="tr"></i><i class="bl"></i><i class="br"></i><div class="scan-line"></div></div>
+  <svg class="scan-icon" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><line x1="8.5" y1="8" x2="15.5" y2="8"/><line x1="8.5" y1="12" x2="15.5" y2="12"/><line x1="8.5" y1="16" x2="12.5" y2="16"/></svg>
+  <p>Point at menu card</p>
+</div>
+
+<div id="onboard">
+  <div class="ob-card">
+    <div class="ob-step" id="obStep"></div>
+    <div class="ob-icon" id="obIcon"></div>
+    <h2 id="obTitle"></h2>
+    <p id="obText"></p>
+    <div class="ob-dots" id="obDots"></div>
+    <button id="obNext">Next</button>
+    <button id="obSkip">Skip</button>
+  </div>
+</div>
+
 <div id="dishCarousel"></div>
 <button id="fbLink">Can't scan? View in 3D</button>
 <div id="fallback">
@@ -268,6 +310,8 @@ const CONFIG={
   steamOpacity:0.4,
   sound:true,
   soundVolume:0.5,
+  haptics:true,                          // vibration on select / marker found (Android; iPhone ignores it)
+  onboarding:true,                       // 3-step intro overlay, shown once per device
   statusOffer:'Show this status at the counter and enjoy a free green tea 🍵',
   reelSeconds:10,
   waReelSeconds:6,
@@ -300,16 +344,19 @@ const dishes = [
   { name:"Mango Petal Tower",     folder:"mangopetaltower",      model:"mangopetaltower.glb",      thumb:"mangopetaltower.png",      scale:"1.5 1.5 1.5", rotation:"90 90 90", tag:"Dessert Special", veg:true, spice:0 }
 ];
 
-let currentIndex=-1, arStarted=false, starting=false, modelTimeout=null, swipeHintShown=false, markerFound=false;
+let currentIndex=-1, arStarted=false, starting=false, modelTimeout=null, markerFound=false, scanFoundT=null;
 
 const $=s=>document.querySelector(s);
 const modelEntity=$('#modelEntity'),
   carousel=$('#dishCarousel'), logo=$('#logo'), scanHint=$('#scanHint'), target=$('#target1'),
   arScene=$('#arScene'), startScreen=$('#startScreen'), loadingOverlay=$('#loadingOverlay'),
   loadingStatus=$('#loadingStatus'), errorOverlay=$('#errorOverlay'), modelLoader=$('#modelLoader'),
-  swipeZone=$('#swipeZone'), swipeHint=$('#swipeHint'), swipeFlash=$('#swipeFlash'), dishCounter=$('#dishCounter');
+  swipeZone=$('#swipeZone'), swipeFlash=$('#swipeFlash'), dishCounter=$('#dishCounter');
 
 const alwaysVisible=[carousel,logo,dishCounter,$('#actionBar')];
+
+/* haptics */
+function buzz(p){ if(!CONFIG.haptics) return; try{ if(navigator.vibrate) navigator.vibrate(p||10) }catch(e){} }
 
 /* carousel setup */
 dishes.forEach((dish,i)=>{
@@ -335,6 +382,7 @@ function applyModel(ent,dish,factor,src){
 
 function selectDish(index){
   if(index===currentIndex) return;
+  if(currentIndex!==-1) buzz(10);
   currentIndex=index;
   const dish=dishes[index];
   if(modelTimeout) clearTimeout(modelTimeout);
@@ -369,10 +417,40 @@ function triggerSwipe(dir){
   swipeFlash.addEventListener('animationend',()=>swipeFlash.className='',{once:true});
   selectDish(dir==='left'?(currentIndex+1)%n:(currentIndex-1+n)%n);
 }
-function showSwipeHintOnce(){
-  if(swipeHintShown) return; swipeHintShown=true;
-  setTimeout(()=>{swipeHint.classList.add('show');setTimeout(()=>swipeHint.classList.remove('show'),2500)},1200);
+
+/* onboarding (3 steps: scan, swipe, tap) */
+const ob=$('#onboard'), obIcon=$('#obIcon'), obStep=$('#obStep'), obTitle=$('#obTitle'), obText=$('#obText'), obDots=$('#obDots'), obNext=$('#obNext'), obSkip=$('#obSkip');
+const OB_STEPS=[
+  {cls:'ob-scan', title:'Scan the menu card', text:'Point your camera at the menu card and the dish appears in 3D on your table.',
+   svg:'<svg viewBox="0 0 72 72"><g class="brk"><path d="M14 26V14h12M46 14h12v12M58 46v12H46M26 58H14V46"/></g><rect x="27" y="24" width="18" height="24" rx="2.5"/><line x1="31" y1="31" x2="41" y2="31"/><line x1="31" y1="36" x2="41" y2="36"/><line x1="31" y1="41" x2="37" y2="41"/></svg>'},
+  {cls:'ob-swipe', title:'Swipe to explore', text:'Swipe left or right, or tap a dish below, to switch between dishes.',
+   svg:'<svg viewBox="0 0 72 72"><polyline points="20 26 10 36 20 46"/><polyline points="52 26 62 36 52 46"/><circle class="dot" cx="36" cy="36" r="8" fill="rgba(232,201,122,.28)"/></svg>'},
+  {cls:'ob-tap', title:'Tap to pause', text:'Tap the screen to pause or resume the rotation and take a closer look.',
+   svg:'<svg viewBox="0 0 72 72"><circle cx="36" cy="36" r="6" fill="rgba(232,201,122,.35)"/><circle class="ring" cx="36" cy="36" r="18"/><circle cx="36" cy="36" r="28" opacity=".3"/></svg>'}
+];
+let obI=0;
+OB_STEPS.forEach(()=>obDots.appendChild(document.createElement('i')));
+function obRender(){
+  const s=OB_STEPS[obI];
+  obStep.textContent=`Step ${obI+1} of ${OB_STEPS.length}`;
+  obIcon.className='ob-icon '+s.cls; obIcon.innerHTML=s.svg;
+  obTitle.textContent=s.title; obText.textContent=s.text;
+  obDots.querySelectorAll('i').forEach((d,i)=>d.classList.toggle('on',i===obI));
+  obNext.textContent=obI===OB_STEPS.length-1?'Got it':'Next';
+  obSkip.style.visibility=obI===OB_STEPS.length-1?'hidden':'visible';
 }
+function showOnboarding(){
+  if(!CONFIG.onboarding) return;
+  try{ if(localStorage.getItem('aurelia_onboarded')) return }catch(e){}
+  obI=0; obRender(); ob.classList.add('show');
+  requestAnimationFrame(()=>requestAnimationFrame(()=>ob.classList.add('in')));
+}
+function closeOnboarding(){
+  ob.classList.remove('in'); setTimeout(()=>ob.classList.remove('show'),350);
+  try{ localStorage.setItem('aurelia_onboarded','1') }catch(e){}
+}
+obNext.addEventListener('click',()=>{buzz(10); if(obI<OB_STEPS.length-1){obI++;obRender()}else closeOnboarding()});
+obSkip.addEventListener('click',()=>{buzz(10); closeOnboarding()});
 
 const waMsg=encodeURIComponent(`Hi ${CONFIG.name}! I saw your AR menu and I'd like to reserve a table.`);
 const LINKS={reserve:`https://wa.me/${CONFIG.whatsapp}?text=${waMsg}`,directions:CONFIG.mapsUrl,call:`tel:${CONFIG.phone}`};
@@ -634,12 +712,12 @@ function fxUpdate(dt){
       so.scale.setScalar(1); so.position.set((t<.85?(Math.random()-.5)*fxExt*.025*(1-t):0),0,0);
       ang=(1-easeOutCubic(t))*Math.PI*.6; ground=clamp01(t/.5);
     }else if(st==='spinzoom'){
-  const e=easeOutBack(clamp01(t/.8));
-  fade=easeOutCubic(clamp01(t/.25));
-  so.scale.setScalar(Math.max(.001,e)); so.position.set(0,0,0);
-  ang=(1-easeOutCubic(t))*Math.PI*6; ground=clamp01(t/.7);
-  r1=clamp01((t-.55)/.45); sb0=.6;
-}else if(st==='jelly'){
+      const e=easeOutBack(clamp01(t/.8));
+      fade=easeOutCubic(clamp01(t/.25));
+      so.scale.setScalar(Math.max(.001,e)); so.position.set(0,0,0);
+      ang=(1-easeOutCubic(t))*Math.PI*6; ground=clamp01(t/.7);
+      r1=clamp01((t-.55)/.45); sb0=.6;
+    }else if(st==='jelly'){
       const w=1-Math.exp(-6.5*t)*Math.cos(15*t), hop=Math.sin(clamp01(t/.42)*Math.PI);
       so.scale.set(Math.max(w,.001),Math.max(w,.001),Math.max(1+(1-w)*.8,.05)); so.position.set(0,0,fxExt*.4*hop);
       ang=(1-easeOutCubic(t))*Math.PI*.7; ground=1-hop*.7; r1=clamp01((t-.4)/.55); r2=clamp01((t-.5)/.5); sb0=.4;
@@ -829,7 +907,7 @@ function arSupport(){
 dishes.forEach((d,i)=>{
   const t=document.createElement('div'); t.className='dish-thumb';
   t.innerHTML=`<div class="thumb-img-wrap"><img src="3d-model/${d.folder}/${d.thumb}" onerror="this.style.visibility='hidden'" alt="${d.name}" draggable="false"></div><span>${d.name}</span>`;
-  t.addEventListener('click',()=>fbSelect(i)); fbCar.appendChild(t);
+  t.addEventListener('click',()=>{buzz(10); fbSelect(i)}); fbCar.appendChild(t);
 });
 fbV.setAttribute('ar-modes',CONFIG.tableEngine==='webxr'?'webxr scene-viewer quick-look':'scene-viewer webxr quick-look');
 fbV.addEventListener('load',()=>fbAR.classList.toggle('show',!!fbV.canActivateAR));
@@ -845,7 +923,7 @@ function fbSelect(i){
 function openFallback(reason){
   if(fbOpen) return; fbOpen=true; clearTimeout(fbLinkT);
   try{pauseAR(); const m=mindar(); if(m) Promise.resolve(m.stop()).catch(()=>{})}catch(e){}
-  ['#arScene','#startScreen','#loadingOverlay','#errorOverlay','#actionBar','#dishCarousel','#logo','#scanHint','#swipeZone','#swipeHint','#modelLoader','#fbLink'].forEach(q=>{const el=document.querySelector(q); if(el) el.style.display='none'});
+  ['#arScene','#startScreen','#loadingOverlay','#errorOverlay','#actionBar','#dishCarousel','#logo','#scanHint','#swipeZone','#onboard','#modelLoader','#fbLink'].forEach(q=>{const el=document.querySelector(q); if(el) el.style.display='none'});
   $('#fbNote').textContent=reason==='denied'?'The camera is off, so here is the 3D view. Allow the camera to see dishes on the menu card.'
     :reason==='manual'?'Turn each dish around with your finger.':'AR is not available on this phone, but you can still explore every dish in 3D.';
   fb.classList.add('show'); fbSelect(currentIndex>=0?currentIndex:0);
@@ -881,7 +959,7 @@ async function startAR(){
       scanHint.style.opacity='1'; arStarted=true;
       swipeZone.classList.add('active');
       alwaysVisible.forEach(el=>{el.style.opacity='1';el.style.pointerEvents='auto'});
-      setupRender(); selectDish(0); showSwipeHintOnce(); armFbLink();
+      setupRender(); selectDish(0); showOnboarding(); armFbLink();
     };
     arScene.addEventListener('loaded',onReady,{once:true});
     arScene.addEventListener('arReady',onReady,{once:true});
@@ -898,8 +976,16 @@ async function startAR(){
   $('#retryBtn').addEventListener(evt,e=>{e.preventDefault();errorOverlay.classList.remove('show');startScreen.style.display='flex';startScreen.style.opacity='1'});
 });
 
-target.addEventListener('targetFound',()=>{markerFound=true;playEntry();scanHint.style.opacity='0'; clearTimeout(fbLinkT); fbLink.classList.remove('show')});
-target.addEventListener('targetLost',()=>{markerFound=false;scanHint.style.opacity='1'; armFbLink()});
+target.addEventListener('targetFound',()=>{
+  markerFound=true; playEntry(); buzz([10,50,10]);
+  clearTimeout(fbLinkT); fbLink.classList.remove('show');
+  clearTimeout(scanFoundT); scanHint.classList.add('found');
+  scanFoundT=setTimeout(()=>{scanHint.style.opacity='0'},450);
+});
+target.addEventListener('targetLost',()=>{
+  markerFound=false; clearTimeout(scanFoundT);
+  scanHint.classList.remove('found'); scanHint.style.opacity='1'; armFbLink();
+});
 document.addEventListener('contextmenu',e=>e.preventDefault());
 </script>
 </body>
