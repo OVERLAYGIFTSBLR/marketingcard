@@ -262,7 +262,7 @@ const CONFIG={
   exposure:1.05,
   envIntensity:0.4,
   shadowOpacity:0.38,
-  revealStyle:'cloche',                  // 'splash'|'flambe'|'toss'|'whirl'|'serve'|'sizzle'|'cloche'|'tempt'|'scan'|'jelly'|'refined'|'emerge'|'orbit'|'drop'|'random'
+  revealStyle:'spinzoom',                  // 'splash'|'flambe'|'toss'|'whirl'|'serve'|'sizzle'|'cloche'|'tempt'|'scan'|'jelly'|'refined'|'emerge'|'orbit'|'drop'|'random'
   glints:false,
   steam:false,
   steamOpacity:0.4,
@@ -548,7 +548,7 @@ const easeOutBounce=t=>{const n=7.5625,d=2.75; if(t<1/d)return n*t*t; if(t<2/d)r
 function playEntry(){
   shadowPlane.material.opacity=0; spinner.object3D.rotation[CONFIG.spinAxis]-=revealAng; revealAng=0;
   curStyle=CONFIG.revealStyle==='random'?['drop','emerge','orbit','scan','jelly','tempt','cloche','serve','sizzle','toss','whirl','splash','flambe'][Math.floor(Math.random()*13)]:CONFIG.revealStyle;
-  ENTRY_DUR=curStyle==='cloche'?2.1:curStyle==='tempt'?2.2:curStyle==='flambe'?2.0:curStyle==='serve'?1.9:curStyle==='sizzle'?1.8:curStyle==='toss'?1.8:curStyle==='splash'?1.8:curStyle==='whirl'?1.7:curStyle==='refined'?1.7:curStyle==='scan'?1.6:1.4; glintFired=false; entryT=0; steamClock=0; fadeMats.forEach(m=>m.opacity=['refined','tempt','serve','sizzle','toss','whirl','splash','flambe'].includes(curStyle)?0:1); spinner.object3D.scale.setScalar(.001);
+  ENTRY_DUR=curStyle==='spinzoom'?1.6:curStyle==='cloche'?2.1:curStyle==='tempt'?2.2:curStyle==='flambe'?2.0:curStyle==='serve'?1.9:curStyle==='sizzle'?1.8:curStyle==='toss'?1.8:curStyle==='splash'?1.8:curStyle==='whirl'?1.7:curStyle==='refined'?1.7:curStyle==='scan'?1.6:1.4; glintFired=false; entryT=0; steamClock=0; fadeMats.forEach(m=>m.opacity=['refined','tempt','serve','sizzle','toss','whirl','splash','flambe'].includes(curStyle)?0:1); spinner.object3D.scale.setScalar(.001);
   steam.forEach((sp,i)=>{const u=sp.userData; u.age=-(i/steam.length)*u.life*(isWarm()?.25:.9); sp.material.opacity=0});
   if(markerFound&&performance.now()-lastSnd>1500){lastSnd=performance.now(); playRevealSound(curStyle)}
 }
@@ -633,7 +633,13 @@ function fxUpdate(dt){
       clipPlane.set(DOWN,scanZ).applyMatrix4(T3.matrixWorld);
       so.scale.setScalar(1); so.position.set((t<.85?(Math.random()-.5)*fxExt*.025*(1-t):0),0,0);
       ang=(1-easeOutCubic(t))*Math.PI*.6; ground=clamp01(t/.5);
-    }else if(st==='jelly'){
+    }else if(st==='spinzoom'){
+  const e=easeOutBack(clamp01(t/.8));
+  fade=easeOutCubic(clamp01(t/.25));
+  so.scale.setScalar(Math.max(.001,e)); so.position.set(0,0,0);
+  ang=(1-easeOutCubic(t))*Math.PI*6; ground=clamp01(t/.7);
+  r1=clamp01((t-.55)/.45); sb0=.6;
+}else if(st==='jelly'){
       const w=1-Math.exp(-6.5*t)*Math.cos(15*t), hop=Math.sin(clamp01(t/.42)*Math.PI);
       so.scale.set(Math.max(w,.001),Math.max(w,.001),Math.max(1+(1-w)*.8,.05)); so.position.set(0,0,fxExt*.4*hop);
       ang=(1-easeOutCubic(t))*Math.PI*.7; ground=1-hop*.7; r1=clamp01((t-.4)/.55); r2=clamp01((t-.5)/.5); sb0=.4;
