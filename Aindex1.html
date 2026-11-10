@@ -13,11 +13,11 @@
 <script>
 (function(){
   'use strict';
-  var ALLOWED_HOSTS=['yourdomain.com','localhost','127.0.0.1'];   // <-- CHANGE THIS
+  var ALLOWED_HOSTS=[];   // domain lock is OFF while empty. To turn on, e.g. ['myrestaurant.com','myname.github.io']
   var DEVTOOLS_ACTION='block';                                    // 'block' or 'warn'
   var isTouch=window.matchMedia&&matchMedia('(pointer:coarse)').matches;
   var h=location.hostname;
-  if(location.protocol!=='file:'&&!ALLOWED_HOSTS.some(function(a){return h===a||h.slice(-(a.length+1))==='.'+a})){
+  if(ALLOWED_HOSTS.length&&location.protocol!=='file:'&&h!=='localhost'&&h!=='127.0.0.1'&&!ALLOWED_HOSTS.some(function(a){return h===a||h.slice(-(a.length+1))==='.'+a})){
     document.documentElement.innerHTML='<body style="background:#060504;color:#C9A84C;font:14px sans-serif;display:flex;align-items:center;justify-content:center;height:100vh">Unauthorized copy.</body>';
     throw new Error('blocked');
   }
