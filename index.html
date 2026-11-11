@@ -251,7 +251,7 @@ img.start-logo{width:min(70vw,260px);height:auto;max-height:260px;object-fit:con
 <script>
 /* ══ RESTAURANT CONFIGURATION ══ */
 const CONFIG={
-  name:'Aurelia', tagline:'Japanese Kitchen',
+  name:'LIVE DISH-AI', tagline:'Japanese Kitchen',
   phone:'+917019743880',                 // for the Call button
   whatsapp:'917019743880',               // country code + number, no + or spaces
   mapsUrl:'https://maps.google.com/?q=LIVE+DISH+AI+OOTY',
@@ -375,7 +375,7 @@ function showSwipeHintOnce(){
   setTimeout(()=>{swipeHint.classList.add('show');setTimeout(()=>swipeHint.classList.remove('show'),2500)},1200);
 }
 
-const waMsg=encodeURIComponent(`Hi ${CONFIG.name}! I saw your AR menu and I'd like to reserve a table.`);
+const waMsg=encodeURIComponent(`Hi ${CONFIG.name}! I saw your AR 3D Menu  and I'd like to reserve a table.`);
 const LINKS={reserve:`https://wa.me/${CONFIG.whatsapp}?text=${waMsg}`,directions:CONFIG.mapsUrl,call:`tel:${CONFIG.phone}`};
 document.querySelectorAll('#actionBar a').forEach(a=>{
   a.href=LINKS[a.dataset.a];
